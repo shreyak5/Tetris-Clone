@@ -13,6 +13,7 @@ class MainWindow extends JFrame
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setVisible(true);
+        setJMenuBar(new MenuBar());
 
         //Setting the size of the JFrame such that all elements fit perfectly
         pack();

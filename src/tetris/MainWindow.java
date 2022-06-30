@@ -7,7 +7,11 @@ class MainWindow extends JFrame
 {
     private int square_size;
     private int board_width, sidepane_width, board_height;
+
+    private int screen_height, screen_width;
+
     Board board;
+    SidePane sidepane;
 
     MainWindow()
     {
@@ -22,8 +26,8 @@ class MainWindow extends JFrame
         setJMenuBar(new MenuBar());
 
         Dimension screen_size = Toolkit.getDefaultToolkit().getScreenSize();
-        int screen_height = screen_size.height;
-        int screen_width = screen_size.width;
+        screen_height = screen_size.height;
+        screen_width = screen_size.width;
 
         square_size = (int)(0.04 * screen_height);
         board_width = 10*square_size;
@@ -35,10 +39,15 @@ class MainWindow extends JFrame
         board.setPreferredSize(new Dimension(board_width, board_height));
         add(board, BorderLayout.WEST);
 
+        //adding the sidepane
+        sidepane = new SidePane();
+        sidepane.setPreferredSize(new Dimension(sidepane_width, board_height));
+        add(sidepane, BorderLayout.EAST);
+
         //Setting the size of the JFrame such that all elements fit perfectly
         pack();
 
         //Placing the JFrame at the centre of the screen
-        setLocation((screen_width - getWidth()) / 2, (screen_height - getWidth()) / 2);
+        setLocation((screen_width - getWidth())/2, (screen_height - getHeight())/2);
     }
 }

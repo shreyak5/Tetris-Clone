@@ -5,6 +5,10 @@ import java.awt.*;
 
 class MainWindow extends JFrame
 {
+    private int square_size;
+    private int board_width, sidepane_width, board_height;
+    Board board;
+
     MainWindow()
     {
         //Setting basic properties of the JFrame
@@ -13,15 +17,28 @@ class MainWindow extends JFrame
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setVisible(true);
+        setLayout(new BorderLayout());
+        //adding menubar
         setJMenuBar(new MenuBar());
 
-        //Setting the size of the JFrame such that all elements fit perfectly
-        pack();
-        
-        //Placing the JFrame at the centre of the screen
         Dimension screen_size = Toolkit.getDefaultToolkit().getScreenSize();
         int screen_height = screen_size.height;
         int screen_width = screen_size.width;
+
+        square_size = (int)(0.04 * screen_height);
+        board_width = 10*square_size;
+        sidepane_width = 5*square_size;
+        board_height = 20*square_size;
+
+        //adding board 
+        board = new Board(square_size);
+        board.setPreferredSize(new Dimension(board_width, board_height));
+        add(board, BorderLayout.WEST);
+
+        //Setting the size of the JFrame such that all elements fit perfectly
+        pack();
+
+        //Placing the JFrame at the centre of the screen
         setLocation((screen_width - getWidth()) / 2, (screen_height - getWidth()) / 2);
     }
 }

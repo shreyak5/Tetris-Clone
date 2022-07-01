@@ -10,6 +10,8 @@ class SidePane extends JPanel
 
     private JButton newgame, pause_resume;
     private NextPieceDisplay display;
+    private JLabel highscore;
+    private JLabel currentScore;
     SidePane()
     {
         setBackground(pane_colour);
@@ -23,8 +25,25 @@ class SidePane extends JPanel
         display.setPreferredSize(new Dimension(100, 100));
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.insets = new Insets(20, 20, 300 , 20);
+        gbc.insets = new Insets(20, 20, 200 , 20);
         add(display, gbc);
+
+        //current score and highscore
+        gbc.insets = new Insets(10, 20, 0, 20);
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        currentScore = new JLabel("<html>Current Score: <br> 1000000</html>");
+        currentScore.setForeground(Color.BLACK);
+        currentScore.setPreferredSize(new Dimension(100, 50));
+        add(currentScore, gbc);
+
+        gbc.insets = new Insets(0, 20, 0, 20);
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        highscore = new JLabel("<html>Highscore: <br> 1000000</html>");
+        highscore.setForeground(Color.BLACK);
+        highscore.setPreferredSize(new Dimension(100, 50));
+        add(highscore, gbc);
 
         //adding buttons
         newgame = new JButton("Start");
@@ -67,3 +86,5 @@ class SidePane extends JPanel
 
     }
 }
+
+//add update highscore and update current score methods

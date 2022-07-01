@@ -15,8 +15,6 @@ class SidePane extends JPanel
         setBackground(pane_colour);
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-
-        gbc.insets = new Insets(20, 20, 20, 20);
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weightx = 100;
 
@@ -25,6 +23,7 @@ class SidePane extends JPanel
         display.setPreferredSize(new Dimension(100, 100));
         gbc.gridx = 0;
         gbc.gridy = 0;
+        gbc.insets = new Insets(20, 20, 300 , 20);
         add(display, gbc);
 
         //adding buttons
@@ -40,6 +39,7 @@ class SidePane extends JPanel
         });
         gbc.gridx = 0;
         gbc.gridy = 3;
+        gbc.insets = new Insets(20, 20, 10, 20);
         add(newgame, gbc);
 
         pause_resume = new JButton("Pause");
@@ -63,7 +63,6 @@ class SidePane extends JPanel
 
         gbc.gridx = 0;
         gbc.gridy = 4;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
         add(pause_resume, gbc);
 
     }

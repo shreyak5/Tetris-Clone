@@ -2,7 +2,6 @@ package tetris;
 
 import javax.swing.*;
 import java.awt.*;
-import java.lang.Math;
 
 class NextPieceDisplay extends JPanel
 {

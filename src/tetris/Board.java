@@ -11,10 +11,20 @@ class Board extends JPanel
     private Color board_colour = Color.LIGHT_GRAY;
     private Color grid_colour = Color.GRAY;
 
+    protected Color gameBoard[][];
+
     Board(int square_size)
     {
         SQUARE_SIZE = square_size;
         setBackground(board_colour);
+
+        //initializing gameboard
+        gameBoard = new Color[20][10];
+        for(int row = 0; row < 20; row++)
+        {
+            for(int column = 0; column < 10; column++)
+                gameBoard[row][column] = board_colour;
+        }
     }
 
     @Override

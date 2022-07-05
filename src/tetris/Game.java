@@ -1,7 +1,6 @@
 package tetris;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 import javax.swing.Timer;
 import java.util.Random;
@@ -14,11 +13,11 @@ class Game
     private int current_score;
     private Timer timer;
 
-    static Tetromino curr_piece;
-    static Tetromino next_piece;
+    
     int minY;
     Board board;
-    Random rand = new Random();
+    static Random rand = new Random();
+    Controls controls;
 
     //Constructor for new Game
     Game(Board b)
@@ -35,7 +34,9 @@ class Game
                 board.repaint();
             }
         });
-    
+
+        //initizalizing controls object
+        controls = new Controls(board);
         startGame();
     }
 
@@ -50,8 +51,20 @@ class Game
 
         //initializing current position of current piece
         board.curr_piece.currPos = new int[]{1, 4};
-
+        addControls();
         timer.start();
+    }
+
+    //Adding keyboard controls to the board
+    void addControls()
+    {
+        board.setFocusable(true);
+        board.addKeyListener(controls);
+    }
+
+    void removeControls()
+    {
+        board.removeKeyListener(controls);
     }
     
 }

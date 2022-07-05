@@ -62,9 +62,10 @@ class Game
         board.addKeyListener(controls);
     }
 
+    //Removes keyboard controls from the board
     void removeControls()
     {
         board.removeKeyListener(controls);
     }
-    
+
 }

@@ -9,7 +9,7 @@ class Controls extends KeyAdapter
     {
         board = b;
     }
-    
+
     public void keyPressed(KeyEvent e) {
         super.keyPressed(e);
         int key = e.getKeyCode();
@@ -50,4 +50,35 @@ class Controls extends KeyAdapter
             } 
         }
     }
+
+    void moveLeft()
+    {
+
+    }
+
+    void moveRight()
+    {
+
+    }
+
+    void rotateLeft()
+    {
+
+    }
+
+    void rotateRight()
+    {
+
+    }
+
+    void hardDrop()
+    {
+
+    }
+
+    void softDrop()
+    {
+
+    }
+    
 }

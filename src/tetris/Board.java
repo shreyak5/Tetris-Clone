@@ -17,6 +17,7 @@ class Board extends JPanel
     protected int rows_count[];
     Tetromino curr_piece;
     Tetromino next_piece;
+
     static Random rand = new Random();
 
     Board(int square_size)
@@ -36,6 +37,7 @@ class Board extends JPanel
         rows_count = new int[20];
         for(int i = 0; i < 20; i++)
             rows_count[i] = 0;
+
     }
 
     /* BOARD PAINTING FUNCTIONS */
@@ -166,7 +168,6 @@ class Board extends JPanel
             //checking for the bottom and top edges of the board
             if(r > 19 || r < 0)
             return false;
-
 
             //checking the presence of fixed pieces in this position
             if(game_board[r][c] != board_colour)

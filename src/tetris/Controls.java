@@ -101,11 +101,16 @@ class Controls extends KeyAdapter
 
     void hardDrop()
     {
-        board.curr_piece.curr_pos[0] = 19;
-        while(!board.checkPosition())
+
+        board.curr_piece.curr_pos[0] = 4;
+        int prev = 4;
+        while(board.checkPosition())
         {
-            board.curr_piece.curr_pos[0]--;
+            prev = board.curr_piece.curr_pos[0];
+            board.curr_piece.curr_pos[0]++;
         }
+        board.curr_piece.curr_pos[0] = prev;
+        board.changePiece();
         board.repaint();
     }
 
@@ -117,7 +122,10 @@ class Controls extends KeyAdapter
         if(board.checkPosition())
             board.repaint();
         else
+        {
             board.curr_piece.curr_pos[0]--;
+            board.changePiece();
+        }
     }
 
 }

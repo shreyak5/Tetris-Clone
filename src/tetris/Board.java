@@ -139,6 +139,8 @@ class Board extends JPanel
         //changing next_piece to curr_piece
         curr_piece = next_piece;
         curr_piece.curr_pos = new int[]{1, 4};
+        if(curr_piece.piece_shape == Tetromino.Shape.I_shape && curr_piece.curr_orientation == 1)
+            curr_piece.curr_pos[0] = 2;
 
         //initializing a new next_piece
         int r = rand.nextInt(0, Tetromino.Shape.values().length);
@@ -161,9 +163,10 @@ class Board extends JPanel
             if(c < 0 || c > 9)
                 return false;
             
-            //checking for the bottom edge of the board
-            if(r > 19)
+            //checking for the bottom and top edges of the board
+            if(r > 19 || r < 0)
             return false;
+
 
             //checking the presence of fixed pieces in this position
             if(game_board[r][c] != board_colour)

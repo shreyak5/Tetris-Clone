@@ -22,7 +22,7 @@ class Tetromino
     Random rand = new Random();
 
     //Tetromino instance variables
-    Shape piece;
+    Shape piece_shape;
     Color piece_colour;
     int curr_orientation;
     int possible_orientations[][][];
@@ -32,10 +32,10 @@ class Tetromino
     //Constructor
     Tetromino(Shape shape)
     {
-        piece = shape;
+        piece_shape = shape;
         piece_colour = Colours.get(shape);
         
-        switch(piece)
+        switch(piece_shape)
         {
             case O_shape:
                 initOshape();

@@ -14,7 +14,7 @@ class Board extends JPanel
     private Color grid_colour = Color.GRAY;
 
     protected Color game_board[][];
-
+    protected int rows_count[];
     Tetromino curr_piece;
     Tetromino next_piece;
     static Random rand = new Random();
@@ -31,6 +31,11 @@ class Board extends JPanel
             for(int column = 0; column < 10; column++)
                 game_board[row][column] = board_colour;
         }
+
+        //initlizaing number of blocks in each row to 0
+        rows_count = new int[20];
+        for(int i = 0; i < 20; i++)
+            rows_count[i] = 0;
     }
 
     /* BOARD PAINTING FUNCTIONS */
@@ -40,11 +45,12 @@ class Board extends JPanel
     {
         super.paintComponent(g);
         paintGrid(g);
+        paintFixed(g);
         if(Game.game_status != Game.Status.NONE)
             paintCurrentPiece(g);
     }
 
-    //paints the tetris grid, with the currently fixed pieces
+    //paints the tetris grid
     void paintGrid(Graphics g)
     {
         g.setColor(grid_colour);
@@ -52,6 +58,26 @@ class Board extends JPanel
         {
             for(int j = 0; j < 10; j++)
                drawBlock(i, j, g); 
+        }
+    }
+
+    //paints the fixed pieces on the grid
+    void paintFixed(Graphics g)
+    {
+        for(int i = 0; i < 20; i++)
+        {
+            if(rows_count[i] == 0)
+                continue;
+            for(int j = 0; j < 10; j++)
+            {
+                if(game_board[i][j] != board_colour)
+                {
+                    g.setColor(game_board[i][j]);
+                    fillBlock(i, j, g);
+                    g.setColor(Color.BLACK);
+                    drawBlock(i, j, g);
+                }
+            }
         }
     }
 
@@ -107,6 +133,7 @@ class Board extends JPanel
             int row = curr_piece.curr_pos[0] + orientation[i][0];
             int column = curr_piece.curr_pos[1] + orientation[i][1];
             game_board[row][column] = curr_piece.piece_colour;
+            rows_count[row]++;
         }
 
         //changing next_piece to curr_piece

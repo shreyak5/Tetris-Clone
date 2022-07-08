@@ -1,7 +1,6 @@
 package tetris;
 
 import java.awt.event.*;
-import java.util.zip.CheckedOutputStream;
 
 class Controls extends KeyAdapter
 {

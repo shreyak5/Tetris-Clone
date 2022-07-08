@@ -30,6 +30,7 @@ class Game
         //initializing timer
         timer = new Timer(1000, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
+                board.requestFocus();
                 board.curr_piece.curr_pos[0]++;
                 if(!board.checkPosition())
                 {

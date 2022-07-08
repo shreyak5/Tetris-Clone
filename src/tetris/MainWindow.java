@@ -34,15 +34,15 @@ class MainWindow extends JFrame
         sidepane_width = 5*square_size;
         board_height = 20*square_size;
 
-        //adding board 
-        board = new Board(square_size);
-        board.setPreferredSize(new Dimension(board_width, board_height));
-        add(board, BorderLayout.WEST);
-
         //adding the sidepane
         sidepane = new SidePane();
         sidepane.setPreferredSize(new Dimension(sidepane_width, board_height));
         add(sidepane, BorderLayout.EAST);
+
+        //adding board 
+        board = new Board(square_size, sidepane.display);
+        board.setPreferredSize(new Dimension(board_width, board_height));
+        add(board, BorderLayout.WEST);
 
         //Setting the size of the JFrame such that all elements fit perfectly
         pack();

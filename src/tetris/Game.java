@@ -59,6 +59,12 @@ class Game
         board.curr_piece.curr_pos = new int[]{1, 4};
         if(board.curr_piece.piece_shape == Tetromino.Shape.I_shape && board.curr_piece.curr_orientation == 1)
             board.curr_piece.curr_pos[0] = 2;
+        
+        //painting the nextpiece display
+        board.next_display.paint_piece = true;
+        board.next_display.piece = board.next_piece;
+        board.next_display.repaint();
+
         addControls();
         timer.start();
     }

@@ -9,9 +9,11 @@ class SidePane extends JPanel
     private Color pane_colour = Color.DARK_GRAY;
 
     private JButton newgame, pause_resume;
-    private NextPieceDisplay display;
+    
     private JLabel highscore;
     private JLabel currentScore;
+
+    NextPieceDisplay display;
     SidePane()
     {
         setBackground(pane_colour);

@@ -17,13 +17,16 @@ class Board extends JPanel
     protected int rows_count[];
     Tetromino curr_piece;
     Tetromino next_piece;
+    NextPieceDisplay next_display;
 
     static Random rand = new Random();
 
-    Board(int square_size)
+    Board(int square_size, NextPieceDisplay n)
     {
         SQUARE_SIZE = square_size;
         setBackground(board_colour);
+
+        next_display = n;
 
         //initializing game_board
         game_board = new Color[20][10];
@@ -147,6 +150,12 @@ class Board extends JPanel
         //initializing a new next_piece
         int r = rand.nextInt(0, Tetromino.Shape.values().length);
         next_piece = new Tetromino(Tetromino.Shape.values()[r]);
+
+        //painting the next piece display
+        next_display.piece = next_piece;
+        next_display.repaint();
+
+        //repainting the board
         repaint();
     }
 

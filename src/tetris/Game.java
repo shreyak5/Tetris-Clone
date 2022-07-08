@@ -31,6 +31,11 @@ class Game
         timer = new Timer(1000, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 board.curr_piece.curr_pos[0]++;
+                if(!board.checkPosition())
+                {
+                    board.curr_piece.curr_pos[0]--;
+                    board.changePiece();
+                }
                 board.repaint();
             }
         });

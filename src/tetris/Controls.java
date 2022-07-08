@@ -1,6 +1,7 @@
 package tetris;
 
 import java.awt.event.*;
+import java.util.zip.CheckedOutputStream;
 
 class Controls extends KeyAdapter
 {
@@ -43,26 +44,25 @@ class Controls extends KeyAdapter
 
     void moveRight()
     {
-        int column = board.curr_piece.curr_pos[1];
-        //checking border cases
-        if(column != 9)
-        {
-            column++;
-            board.curr_piece.curr_pos[1] = column;
+        board.curr_piece.curr_pos[1]++;
+
+        //checking if it's a valid position
+        if(board.checkPosition())
             board.repaint();
-        }    
+        else
+            board.curr_piece.curr_pos[1]--;
+ 
     }
 
     void moveLeft()
     {
-        int column = board.curr_piece.curr_pos[1];
-        //checking border cases
-        if(column != 0)
-        {
-            column--;
-            board.curr_piece.curr_pos[1] = column;
+        board.curr_piece.curr_pos[1]--;
+
+        //checking if it's a valid position
+        if(board.checkPosition())
             board.repaint();
-        }
+        else
+            board.curr_piece.curr_pos[1]++;
     }
 
     void rotateRight()
@@ -71,7 +71,16 @@ class Controls extends KeyAdapter
         int orientation = board.curr_piece.curr_orientation;
         orientation = (orientation + 1) % size;
         board.curr_piece.curr_orientation = orientation;
-        board.repaint();
+
+        //checking if the new orientation is valid
+        if(board.checkPosition())
+            board.repaint();
+        else
+        {
+            orientation = (orientation - 1 + size) % size;
+            board.curr_piece.curr_orientation = orientation;
+        }
+
     } 
 
     void rotateLeft()
@@ -80,24 +89,36 @@ class Controls extends KeyAdapter
         int orientation = board.curr_piece.curr_orientation;
         orientation = (orientation - 1 + size) % size;
         board.curr_piece.curr_orientation = orientation;
-        board.repaint();
+
+        //checking if the new orientation is valid
+        if(board.checkPosition())
+            board.repaint();
+        else
+        {
+            orientation = (orientation + 1) % size;
+            board.curr_piece.curr_orientation = orientation;
+        }
     }
 
     void hardDrop()
     {
         board.curr_piece.curr_pos[0] = 19;
+        while(!board.checkPosition())
+        {
+            board.curr_piece.curr_pos[0]--;
+        }
         board.repaint();
     }
 
     void softDrop()
     {
-        int row = board.curr_piece.curr_pos[0];
-        if(row != 19)
-        {
-            row++;
-            board.curr_piece.curr_pos[0] = row;
+        board.curr_piece.curr_pos[0]++;
+
+        //checking if the position is valid
+        if(board.checkPosition())
             board.repaint();
-        } 
+        else
+            board.curr_piece.curr_pos[0]--;
     }
 
 }

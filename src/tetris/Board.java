@@ -1,6 +1,7 @@
 package tetris;
 
 import java.awt.Graphics;
+import java.util.Random;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +17,7 @@ class Board extends JPanel
 
     Tetromino curr_piece;
     Tetromino next_piece;
+    static Random rand = new Random();
 
     Board(int square_size)
     {
@@ -29,7 +31,6 @@ class Board extends JPanel
             for(int column = 0; column < 10; column++)
                 game_board[row][column] = board_colour;
         }
-            
     }
 
     /* BOARD PAINTING FUNCTIONS */
@@ -111,6 +112,10 @@ class Board extends JPanel
         //changing next_piece to curr_piece
         curr_piece = next_piece;
         curr_piece.curr_pos = new int[]{1, 4};
+
+        //initializing a new next_piece
+        int r = rand.nextInt(0, Tetromino.Shape.values().length);
+        next_piece = new Tetromino(Tetromino.Shape.values()[r]);
         repaint();
     }
 
@@ -123,19 +128,20 @@ class Board extends JPanel
         for(int i = 0; i < 4; i++)
         {
             int r = row + orientation[i][0];
-            int c = column + orientation[i][0];
+            int c = column + orientation[i][1];
             
             //checking for the left, right edges of the board
             if(c < 0 || c > 9)
                 return false;
             
+            //checking for the bottom edge of the board
+            if(r > 19)
+            return false;
+
             //checking the presence of fixed pieces in this position
             if(game_board[r][c] != board_colour)
                 return false;
-            
-            //checking for the bottom edge ofthe board
-            if(r > 19)
-                return false;
+              
         }
         return true;
     }

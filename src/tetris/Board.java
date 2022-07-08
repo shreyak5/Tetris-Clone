@@ -14,8 +14,6 @@ class Board extends JPanel
 
     protected Color game_board[][];
 
-
-
     Tetromino curr_piece;
     Tetromino next_piece;
 
@@ -34,6 +32,8 @@ class Board extends JPanel
             
     }
 
+    /* BOARD PAINTING FUNCTIONS */
+
     @Override
     protected void paintComponent(Graphics g) 
     {
@@ -43,6 +43,7 @@ class Board extends JPanel
             paintCurrentPiece(g);
     }
 
+    //paints the tetris grid, with the currently fixed pieces
     void paintGrid(Graphics g)
     {
         g.setColor(grid_colour);
@@ -82,6 +83,9 @@ class Board extends JPanel
         g.fillRoundRect(SQUARE_SIZE*column, SQUARE_SIZE*row, SQUARE_SIZE, SQUARE_SIZE, 5, 5);
     }
 
+
+    /* GAMEPLAY-RELATED FUNCTIONS */
+
     //clears the tetris board for a new game
     void clearBoard()
     {
@@ -110,9 +114,30 @@ class Board extends JPanel
         repaint();
     }
 
-    // void checkPosition()
-    // {
-
-    // }
+    // returns true if the next position if a valid position, else false
+    boolean checkPosition()
+    {
+        int orientation[][] = curr_piece.possible_orientations[curr_piece.curr_orientation];
+        int row = curr_piece.curr_pos[0];
+        int column = curr_piece.curr_pos[1];
+        for(int i = 0; i < 4; i++)
+        {
+            int r = row + orientation[i][0];
+            int c = column + orientation[i][0];
+            
+            //checking for the left, right edges of the board
+            if(c < 0 || c > 9)
+                return false;
+            
+            //checking the presence of fixed pieces in this position
+            if(game_board[r][c] != board_colour)
+                return false;
+            
+            //checking for the bottom edge ofthe board
+            if(r > 19)
+                return false;
+        }
+        return true;
+    }
     
 }

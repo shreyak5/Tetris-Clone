@@ -56,8 +56,8 @@ class Board extends JPanel
     void paintCurrentPiece(Graphics g)
     {
         int orientations[][] = curr_piece.possible_orientations[curr_piece.curr_orientation];
-        int row = curr_piece.currPos[0];
-        int column = curr_piece.currPos[1];
+        int row = curr_piece.curr_pos[0];
+        int column = curr_piece.curr_pos[1];
 
         g.setColor(curr_piece.piece_colour);
         //printing all blocks of the current piece
@@ -81,5 +81,38 @@ class Board extends JPanel
     {
         g.fillRoundRect(SQUARE_SIZE*column, SQUARE_SIZE*row, SQUARE_SIZE, SQUARE_SIZE, 5, 5);
     }
+
+    //clears the tetris board for a new game
+    void clearBoard()
+    {
+        for(int row = 0; row < 20; row++)
+        {
+            for(int column = 0; column < 10; column++)
+                game_board[row][column] = board_colour;
+        }
+    }
+
+    //called when the current piece is set in the grid and stops moving
+    void changePiece()
+    {
+        //adding final position of curr_piece to the board
+        int orientation[][] = curr_piece.possible_orientations[curr_piece.curr_orientation];
+        for(int i = 0; i < 4; i++)
+        {
+            int row = curr_piece.curr_pos[0] + orientation[i][0];
+            int column = curr_piece.curr_pos[1] + orientation[i][1];
+            game_board[row][column] = curr_piece.piece_colour;
+        }
+
+        //changing next_piece to curr_piece
+        curr_piece = next_piece;
+        curr_piece.curr_pos = new int[]{1, 4};
+        repaint();
+    }
+
+    // void checkPosition()
+    // {
+
+    // }
     
 }

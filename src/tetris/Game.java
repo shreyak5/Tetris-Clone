@@ -30,7 +30,7 @@ class Game
         //initializing timer
         timer = new Timer(1000, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                board.curr_piece.currPos[0]++;
+                board.curr_piece.curr_pos[0]++;
                 board.repaint();
             }
         });
@@ -50,7 +50,7 @@ class Game
         board.next_piece = new Tetromino(Tetromino.Shape.values()[r]);
 
         //initializing current position of current piece
-        board.curr_piece.currPos = new int[]{1, 4};
+        board.curr_piece.curr_pos = new int[]{1, 4};
         addControls();
         timer.start();
     }
@@ -67,5 +67,6 @@ class Game
     {
         board.removeKeyListener(controls);
     }
+
 
 }

@@ -26,7 +26,7 @@ class Tetromino
     Color piece_colour;
     int curr_orientation;
     int possible_orientations[][][];
-    int currPos[];
+    int curr_pos[];
     // int maxLeft, maxRight, maxDown;   
 
     //Constructor

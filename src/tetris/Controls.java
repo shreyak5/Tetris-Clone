@@ -43,24 +43,24 @@ class Controls extends KeyAdapter
 
     void moveRight()
     {
-        int column = board.curr_piece.currPos[1];
+        int column = board.curr_piece.curr_pos[1];
         //checking border cases
         if(column != 9)
         {
             column++;
-            board.curr_piece.currPos[1] = column;
+            board.curr_piece.curr_pos[1] = column;
             board.repaint();
         }    
     }
 
     void moveLeft()
     {
-        int column = board.curr_piece.currPos[1];
+        int column = board.curr_piece.curr_pos[1];
         //checking border cases
         if(column != 0)
         {
             column--;
-            board.curr_piece.currPos[1] = column;
+            board.curr_piece.curr_pos[1] = column;
             board.repaint();
         }
     }
@@ -85,17 +85,17 @@ class Controls extends KeyAdapter
 
     void hardDrop()
     {
-        board.curr_piece.currPos[0] = 19;
+        board.curr_piece.curr_pos[0] = 19;
         board.repaint();
     }
 
     void softDrop()
     {
-        int row = board.curr_piece.currPos[0];
+        int row = board.curr_piece.curr_pos[0];
         if(row != 19)
         {
             row++;
-            board.curr_piece.currPos[0] = row;
+            board.curr_piece.curr_pos[0] = row;
             board.repaint();
         } 
     }

@@ -49,6 +49,6 @@ class MainWindow extends JFrame
 
         //Placing the JFrame at the centre of the screen
         setLocation((screen_width - getWidth())/2, (screen_height - getHeight())/2);
-        new Game(board);
+        new Game(board, sidepane);
     }
 }

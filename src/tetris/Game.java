@@ -3,6 +3,7 @@ package tetris;
 import java.awt.event.*;
 
 import javax.swing.Timer;
+import javax.swing.*;
 import java.util.Random;
 
 class Game 
@@ -13,19 +14,18 @@ class Game
     private int current_score;
     private Timer timer;
 
-    
-    int minY;
     Board board;
+    SidePane side_pane;
     static Random rand = new Random();
     Controls controls;
 
     //Constructor for new Game
-    Game(Board b)
+    Game(Board b, SidePane s)
     {
         board = b;
+        side_pane = s;
         current_score = 0;
         game_status = Status.ONGOING;
-        minY = 20;
 
         //initializing timer
         timer = new Timer(1000, new ActionListener(){
@@ -41,9 +41,45 @@ class Game
             }
         });
 
+        //adding action Listeners to the buttons
+        initializeButtons();
+
         //initizalizing controls object
         controls = new Controls(board);
         startGame();
+    }
+
+    void initializeButtons()
+    {
+        //new_game button
+        side_pane.new_game.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e)
+            {
+                JButton b = (JButton)e.getSource();
+                //start game
+                if((b.getText()).equals("Start"))
+                    b.setText("New Game");
+            }
+        });
+
+        //pause_resume button
+        side_pane.pause_resume.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e)
+            {
+                JButton b = (JButton)e.getSource();
+                if((b.getText()).equals("Pause"))
+                {
+                    //check if theres an ongoing game
+                    // if there's none ignore
+                    //else pause
+                    b.setText("Resume");
+                }
+                else if((b.getText()).equals("Resume"))
+                {
+                    b.setText("Pause");
+                }
+            }
+        });
     }
 
     void startGame()
@@ -82,5 +118,22 @@ class Game
         board.removeKeyListener(controls);
     }
 
+    void endGame()
+    {
+        timer.stop();
+        board.clearBoard();
+        game_status = Status.NONE;
+        removeControls();
+
+        //set highscore
+        current_score = 0;
+    }
+
+    void pauseGame()
+    {
+        timer.stop();
+        game_status = Status.PAUSED;
+        removeControls();
+    }
 
 }

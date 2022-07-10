@@ -7,13 +7,14 @@ import java.awt.event.*;
 class SidePane extends JPanel
 {
     private Color pane_colour = Color.DARK_GRAY;
-
-    private JButton newgame, pause_resume;
+    
     
     private JLabel highscore;
     private JLabel currentScore;
 
     NextPieceDisplay display;
+    JButton new_game, pause_resume;
+    
     SidePane()
     {
         setBackground(pane_colour);
@@ -48,40 +49,13 @@ class SidePane extends JPanel
         add(highscore, gbc);
 
         //adding buttons
-        newgame = new JButton("Start");
-        newgame.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e)
-            {
-                JButton b = (JButton)e.getSource();
-                //start game
-                if((b.getText()).equals("Start"))
-                    b.setText("New Game");
-            }
-        });
+        new_game = new JButton("Start");
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.insets = new Insets(20, 20, 10, 20);
-        add(newgame, gbc);
+        add(new_game, gbc);
 
         pause_resume = new JButton("Pause");
-        pause_resume.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e)
-            {
-                JButton b = (JButton)e.getSource();
-                if((b.getText()).equals("Pause"))
-                {
-                    //check if theres an ongoing game
-                    // if there's none ignore
-                    //else pause
-                    b.setText("Resume");
-                }
-                else if((b.getText()).equals("Resume"))
-                {
-                    b.setText("Pause");
-                }
-            }
-        });
-
         gbc.gridx = 0;
         gbc.gridy = 4;
         add(pause_resume, gbc);

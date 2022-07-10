@@ -13,7 +13,7 @@ class SidePane extends JPanel
     private JLabel currentScore;
 
     NextPieceDisplay display;
-    JButton new_game, pause_resume;
+    JButton start_stop, pause_resume;
     
     SidePane()
     {
@@ -49,11 +49,11 @@ class SidePane extends JPanel
         add(highscore, gbc);
 
         //adding buttons
-        new_game = new JButton("Start");
+        start_stop = new JButton("Start Game");
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.insets = new Insets(20, 20, 10, 20);
-        add(new_game, gbc);
+        add(start_stop, gbc);
 
         pause_resume = new JButton("Pause");
         gbc.gridx = 0;

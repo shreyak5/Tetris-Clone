@@ -24,8 +24,6 @@ class Game
     {
         board = b;
         side_pane = s;
-        current_score = 0;
-        game_status = Status.ONGOING;
 
         //initializing timer
         timer = new Timer(1000, new ActionListener(){
@@ -46,19 +44,29 @@ class Game
 
         //initizalizing controls object
         controls = new Controls(board);
-        startGame();
     }
 
     void initializeButtons()
     {
-        //new_game button
-        side_pane.new_game.addActionListener(new ActionListener(){
+        //start_stop button
+        side_pane.start_stop.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e)
             {
                 JButton b = (JButton)e.getSource();
                 //start game
-                if((b.getText()).equals("Start"))
-                    b.setText("New Game");
+                if((b.getText()).equals("Start Game"))
+                {
+                    startGame();
+                    b.setText("End Game");
+                }
+                else
+                {
+                    endGame();
+                    b.setText("Start Game");
+                    if((side_pane.pause_resume.getText()).equals("Resume"))
+                        side_pane.pause_resume.setText("Pause");
+                }
+                
             }
         });
 
@@ -67,15 +75,14 @@ class Game
             public void actionPerformed(ActionEvent e)
             {
                 JButton b = (JButton)e.getSource();
-                if((b.getText()).equals("Pause"))
+                if((b.getText()).equals("Pause") && game_status == Status.ONGOING)
                 {
-                    //check if theres an ongoing game
-                    // if there's none ignore
-                    //else pause
+                    pauseGame();
                     b.setText("Resume");
                 }
-                else if((b.getText()).equals("Resume"))
+                else if((b.getText()).equals("Resume") && game_status == Status.PAUSED)
                 {
+                    resumeGame();
                     b.setText("Pause");
                 }
             }
@@ -84,6 +91,9 @@ class Game
 
     void startGame()
     {
+        current_score = 0;
+        game_status = Status.ONGOING;
+
         //Initializing curr_piece and next_piece
         int r = rand.nextInt(0, Tetromino.Shape.values().length);
         board.curr_piece = new Tetromino(Tetromino.Shape.values()[r]);
@@ -100,7 +110,7 @@ class Game
         board.next_display.paint_piece = true;
         board.next_display.piece = board.next_piece;
         board.next_display.repaint();
-
+        
         addControls();
         timer.start();
     }
@@ -121,8 +131,19 @@ class Game
     void endGame()
     {
         timer.stop();
+
+        //clearing board
         board.clearBoard();
+        board.repaint();
+
+        //clearing nextpiece display
+        side_pane.display.paint_piece = false;
+        side_pane.display.repaint();
+
+        //resetting game status
         game_status = Status.NONE;
+
+        //removing controls
         removeControls();
 
         //set highscore
@@ -132,8 +153,23 @@ class Game
     void pauseGame()
     {
         timer.stop();
+
+        //setting game status
         game_status = Status.PAUSED;
+
+        //removing controls
         removeControls();
+    }
+
+    void resumeGame()
+    {
+        timer.start();
+
+        //setting game status
+        game_status = Status.ONGOING;
+
+        //adding controls
+        addControls();
     }
 
 }

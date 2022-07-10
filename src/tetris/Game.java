@@ -16,14 +16,16 @@ class Game
 
     Board board;
     SidePane side_pane;
+    MenuBar menu_bar;
     static Random rand = new Random();
     Controls controls;
 
     //Constructor for new Game
-    Game(Board b, SidePane s)
+    Game(Board b, SidePane s, MenuBar mb)
     {
         board = b;
         side_pane = s;
+        menu_bar = mb;
 
         //initializing timer
         timer = new Timer(1000, new ActionListener(){

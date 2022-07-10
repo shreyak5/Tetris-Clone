@@ -12,6 +12,7 @@ class MainWindow extends JFrame
 
     Board board;
     SidePane sidepane;
+    MenuBar menuBar;
 
     MainWindow()
     {
@@ -22,8 +23,10 @@ class MainWindow extends JFrame
         setResizable(false);
         setVisible(true);
         setLayout(new BorderLayout());
+
         //adding menubar
-        setJMenuBar(new MenuBar());
+        menuBar = new MenuBar();
+        setJMenuBar(menuBar);
 
         Dimension screen_size = Toolkit.getDefaultToolkit().getScreenSize();
         screen_height = screen_size.height;
@@ -49,6 +52,6 @@ class MainWindow extends JFrame
 
         //Placing the JFrame at the centre of the screen
         setLocation((screen_width - getWidth())/2, (screen_height - getHeight())/2);
-        new Game(board, sidepane);
+        new Game(board, sidepane, menuBar);
     }
 }

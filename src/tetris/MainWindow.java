@@ -2,6 +2,7 @@ package tetris;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 class MainWindow extends JFrame
 {
@@ -19,7 +20,6 @@ class MainWindow extends JFrame
         //Setting basic properties of the JFrame
         setTitle("Tetris");
         setIconImage((new ImageIcon("images/jframe-icon.png")).getImage());
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setVisible(true);
         setLayout(new BorderLayout());
@@ -52,6 +52,21 @@ class MainWindow extends JFrame
 
         //Placing the JFrame at the centre of the screen
         setLocation((screen_width - getWidth())/2, (screen_height - getHeight())/2);
+
+        //adding confirmation dialog box before closing window
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing(WindowEvent e) 
+            {   
+                int result = JOptionPane.showConfirmDialog(null, "Do you want to exit?", "Exit Confirmation", JOptionPane.YES_NO_CANCEL_OPTION);
+                if(result == JOptionPane.YES_OPTION)
+                    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                else
+                    setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);    
+            }
+        });
+
+        //creating Game class object
         new Game(board, sidepane, menuBar);
     }
 }

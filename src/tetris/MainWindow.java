@@ -66,6 +66,17 @@ class MainWindow extends JFrame
             }
         });
 
+        //adding window listener for exit menu item
+        menuBar.exit.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) 
+            {   
+                int result = JOptionPane.showConfirmDialog(null, "Do you want to exit?", "Exit Confirmation", JOptionPane.YES_NO_CANCEL_OPTION);
+                if(result == JOptionPane.YES_OPTION)
+                    dispose();  
+            }
+        });
+
         //creating Game class object
         new Game(board, sidepane, menuBar);
     }

@@ -4,8 +4,8 @@ import javax.swing.*;
 
 class MenuBar extends JMenuBar
 {   
-    private JMenu game;
-    private JMenuItem newGame, pause, resume, exit;
+    JMenu game;
+    JMenuItem newGame, pause, resume, exit;
 
     private JMenu help;
     private JMenuItem instructions;

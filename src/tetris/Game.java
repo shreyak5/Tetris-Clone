@@ -97,8 +97,8 @@ class Game
                 {
                     endGame();
                 }
-
-                startGame();
+                if(game_status == Status.NONE)
+                    startGame();
             }
         });
 
@@ -196,6 +196,12 @@ class Game
 
     void endGame()
     {
+        int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to end this game?", "End Game Confirmation:", JOptionPane.YES_NO_CANCEL_OPTION);
+    
+        //doesn't end the game
+        if(result != JOptionPane.YES_OPTION)
+            return;
+
         timer.stop();
 
         //clearing board

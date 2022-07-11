@@ -268,7 +268,6 @@ class Game
     {
         try 
         {
-            //
             Scanner sc = new Scanner(new File("highscore.txt"));
             int highscore = 0;
             while(sc.hasNextInt())

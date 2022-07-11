@@ -141,6 +141,31 @@ class Game
             }
         });
 
+        //resume menu item
+        menu_bar.resume.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) 
+            {
+                if(game_status == Status.PAUSED)
+                {
+                    resumeGame();
+                    if((side_pane.pause_resume.getText()).equals("Resume"))
+                        side_pane.pause_resume.setText("Pause");
+                }
+                else if(game_status == Status.ONGOING)
+                {
+                    // the game isnt paused to resume it
+                    JOptionPane.showMessageDialog(null, "You can't resume an ongoing game!\n(Pause it first)");
+                }
+                else if(game_status == Status.NONE)
+                {
+                    // there is no ongoing game
+                    JOptionPane.showMessageDialog(null, "There is no ongoing game to resume.");
+                }
+
+                
+            }
+        });
+
     }
 
     void startGame()

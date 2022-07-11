@@ -5,7 +5,7 @@ import javax.swing.*;
 class MenuBar extends JMenuBar
 {   
     JMenu game;
-    JMenuItem newGame, pause, resume, exit;
+    JMenuItem new_game, pause, resume, exit;
 
     private JMenu help;
     private JMenuItem instructions;
@@ -17,12 +17,12 @@ class MenuBar extends JMenuBar
         help = new JMenu("Help");
 
         //Menu items for Game menu
-        newGame = new JMenuItem("New game");
+        new_game = new JMenuItem("New game");
         pause = new JMenuItem("Pause");
         resume = new JMenuItem("Resume");
         exit = new JMenuItem("Exit");
         
-        game.add(newGame);
+        game.add(new_game);
         game.add(pause);
         game.add(resume);
         game.add(exit);

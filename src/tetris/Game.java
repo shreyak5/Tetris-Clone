@@ -44,10 +44,14 @@ class Game
         //adding action Listeners to the buttons
         initializeButtons();
 
+        //adding action listeners to the menu items
+        initializeMenu();
+
         //initizalizing controls object
         controls = new Controls(board);
     }
 
+    /* INITIALIZATION METHODS */
     void initializeButtons()
     {
         //start_stop button
@@ -87,6 +91,27 @@ class Game
                     resumeGame();
                     b.setText("Pause");
                 }
+            }
+        });
+    }
+
+    void initializeMenu()
+    {
+        menu_bar.new_game.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) 
+            {
+                if(game_status == Status.ONGOING || game_status == Status.PAUSED)
+                {
+                    endGame();
+                }
+
+                if((side_pane.start_stop.getText()).equals("Start Game"))
+                    side_pane.start_stop.setText("End Game");
+
+                if((side_pane.pause_resume.getText()).equals("Resume"))
+                    side_pane.pause_resume.setText("Pause");
+
+                startGame();
             }
         });
     }

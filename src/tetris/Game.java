@@ -97,6 +97,7 @@ class Game
 
     void initializeMenu()
     {
+        //new game menu item
         menu_bar.new_game.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) 
             {
@@ -114,6 +115,32 @@ class Game
                 startGame();
             }
         });
+
+        //pause menu item
+        menu_bar.pause.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) 
+            {
+                if(game_status == Status.ONGOING)
+                {
+                    pauseGame();
+                    if((side_pane.pause_resume.getText()).equals("Pause"))
+                        side_pane.pause_resume.setText("Resume");
+                }
+                else if(game_status == Status.PAUSED)
+                {
+                    //the game is already paused - JOptionPane
+                    JOptionPane.showMessageDialog(null, "The game is already paused!");
+
+                }
+                else if(game_status == Status.NONE)
+                {
+                    // there is no ongoing game to pause - JOptionPane
+                    JOptionPane.showMessageDialog(null, "There is no ongoing game to pause.");
+                }
+                
+            }
+        });
+
     }
 
     void startGame()

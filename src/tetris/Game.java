@@ -58,19 +58,14 @@ class Game
         side_pane.start_stop.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e)
             {
-                JButton b = (JButton)e.getSource();
-                //start game
-                if((b.getText()).equals("Start Game"))
+                String text = side_pane.start_stop.getText();
+                if(text.equals("Start Game"))
                 {
                     startGame();
-                    b.setText("End Game");
                 }
-                else
-                {
+                else if(text.equals("End Game"))
+                {  
                     endGame();
-                    b.setText("Start Game");
-                    if((side_pane.pause_resume.getText()).equals("Resume"))
-                        side_pane.pause_resume.setText("Pause");
                 }
                 
             }
@@ -80,16 +75,13 @@ class Game
         side_pane.pause_resume.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e)
             {
-                JButton b = (JButton)e.getSource();
-                if((b.getText()).equals("Pause") && game_status == Status.ONGOING)
+                if(game_status == Status.ONGOING)
                 {
                     pauseGame();
-                    b.setText("Resume");
                 }
-                else if((b.getText()).equals("Resume") && game_status == Status.PAUSED)
+                else if(game_status == Status.PAUSED)
                 {
                     resumeGame();
-                    b.setText("Pause");
                 }
             }
         });
@@ -106,12 +98,6 @@ class Game
                     endGame();
                 }
 
-                if((side_pane.start_stop.getText()).equals("Start Game"))
-                    side_pane.start_stop.setText("End Game");
-
-                if((side_pane.pause_resume.getText()).equals("Resume"))
-                    side_pane.pause_resume.setText("Pause");
-
                 startGame();
             }
         });
@@ -123,8 +109,7 @@ class Game
                 if(game_status == Status.ONGOING)
                 {
                     pauseGame();
-                    if((side_pane.pause_resume.getText()).equals("Pause"))
-                        side_pane.pause_resume.setText("Resume");
+
                 }
                 else if(game_status == Status.PAUSED)
                 {
@@ -148,8 +133,6 @@ class Game
                 if(game_status == Status.PAUSED)
                 {
                     resumeGame();
-                    if((side_pane.pause_resume.getText()).equals("Resume"))
-                        side_pane.pause_resume.setText("Pause");
                 }
                 else if(game_status == Status.ONGOING)
                 {
@@ -166,6 +149,19 @@ class Game
             }
         });
 
+    }
+
+    //Adding keyboard controls to the board
+    void addControls()
+    {
+        board.setFocusable(true);
+        board.addKeyListener(controls);
+    }
+
+    //Removes keyboard controls from the board
+    void removeControls()
+    {
+        board.removeKeyListener(controls);
     }
 
     void startGame()
@@ -192,19 +188,10 @@ class Game
         
         addControls();
         timer.start();
-    }
 
-    //Adding keyboard controls to the board
-    void addControls()
-    {
-        board.setFocusable(true);
-        board.addKeyListener(controls);
-    }
-
-    //Removes keyboard controls from the board
-    void removeControls()
-    {
-        board.removeKeyListener(controls);
+        //changing the text on buttons
+        side_pane.start_stop.setText("End Game");
+        side_pane.pause_resume.setText("Pause");
     }
 
     void endGame()
@@ -227,6 +214,10 @@ class Game
 
         //set highscore
         current_score = 0;
+
+        //changing text on buttons
+        side_pane.start_stop.setText("Start Game");
+        side_pane.pause_resume.setText("Pause");
     }
 
     void pauseGame()
@@ -238,6 +229,9 @@ class Game
 
         //removing controls
         removeControls();
+
+        //changing text on buttons
+        side_pane.pause_resume.setText("Resume");
     }
 
     void resumeGame()
@@ -249,6 +243,9 @@ class Game
 
         //adding controls
         addControls();
+
+        //changing text on buttons
+        side_pane.pause_resume.setText("Pause");
     }
 
 }

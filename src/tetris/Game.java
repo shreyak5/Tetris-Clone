@@ -1,10 +1,15 @@
 package tetris;
 
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.Timer;
 import javax.swing.*;
 import java.util.Random;
+import java.util.Scanner;
 
 class Game 
 {
@@ -151,6 +156,8 @@ class Game
 
     }
 
+    /* KEYBOARD CONTROL METHODS */
+
     //Adding keyboard controls to the board
     void addControls()
     {
@@ -164,6 +171,7 @@ class Game
         board.removeKeyListener(controls);
     }
 
+    /* GAME STATUS METHODS */
     void startGame()
     {
         current_score = 0;
@@ -219,6 +227,7 @@ class Game
         removeControls();
 
         //set highscore
+        setHighscore();
         current_score = 0;
 
         //changing text on buttons
@@ -253,5 +262,41 @@ class Game
         //changing text on buttons
         side_pane.pause_resume.setText("Pause");
     }
+
+    /* SETTING HIGHSCORE */
+    void setHighscore()
+    {
+        try 
+        {
+            //
+            Scanner sc = new Scanner(new File("highscore.txt"));
+            int highscore = 0;
+            while(sc.hasNextInt())
+                highscore = sc.nextInt();
+            
+            if(current_score <= highscore)
+                return;
+
+            sc.close();
+
+            highscore = current_score;
+            try 
+            {
+                FileWriter fw = new FileWriter("highscore.txt");
+                fw.write(Integer.toString(highscore));
+                fw.close();
+            } 
+            catch (IOException e) 
+            {
+                System.out.println("IOException\n");
+            }
+            
+        } 
+        catch (FileNotFoundException e) 
+        {
+            System.out.println("\"highscore.txt\" not found!\n");
+        }
+    }
+
 
 }

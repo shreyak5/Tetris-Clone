@@ -192,9 +192,10 @@ class Game
         board.next_piece = new Tetromino(Tetromino.Shape.values()[r]);
 
         //initializing current position of current piece
-        board.curr_piece.curr_pos = new int[]{1, 4};
+        board.curr_piece.curr_pos = new int[]{0, 4};
+        //exception in starting position for vertical I-shape
         if(board.curr_piece.piece_shape == Tetromino.Shape.I_shape && board.curr_piece.curr_orientation == 1)
-            board.curr_piece.curr_pos[0] = 2;
+            board.curr_piece.curr_pos[0] = 1;
         
         //painting the nextpiece display
         board.next_display.paint_piece = true;

@@ -106,6 +106,12 @@ class Board extends JPanel
         {
             int x = orientations[i][1];
             int y = orientations[i][0];
+            
+            //if a block is outside the grid (starting position), then don't print it
+            if((row + y) < 0)
+                continue;
+            
+            //print block
             g.setColor(curr_piece.piece_colour);
             fillBlock(row + y, column + x, g);
             g.setColor(Color.BLACK);
@@ -151,9 +157,10 @@ class Board extends JPanel
 
         //changing next_piece to curr_piece
         curr_piece = next_piece;
-        curr_piece.curr_pos = new int[]{1, 4};
+        curr_piece.curr_pos = new int[]{0, 4};
+        //exception in starting position for vertical I-shape
         if(curr_piece.piece_shape == Tetromino.Shape.I_shape && curr_piece.curr_orientation == 1)
-            curr_piece.curr_pos[0] = 2;
+            curr_piece.curr_pos[0] = 1;
 
         //initializing a new next_piece
         int r = rand.nextInt(0, Tetromino.Shape.values().length);
@@ -188,7 +195,7 @@ class Board extends JPanel
             
             //checking for the bottom and top edges of the board
             if(r > 19 || r < 0)
-            return false;
+                return false;
 
             //checking the presence of fixed pieces in this position
             if(game_board[r][c] != board_colour)

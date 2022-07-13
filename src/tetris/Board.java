@@ -19,6 +19,7 @@ class Board extends JPanel
     Tetromino next_piece;
     NextPieceDisplay next_display;
 
+    int current_score;
     static Random rand = new Random();
 
     Board(int square_size, NextPieceDisplay n)

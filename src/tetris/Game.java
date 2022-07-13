@@ -16,7 +16,6 @@ class Game
     static enum Status{ONGOING, PAUSED, NONE};
     static Status game_status = Status.NONE;
 
-    private int current_score;
     private Timer timer;
 
     Board board;
@@ -174,7 +173,7 @@ class Game
     /* GAME STATUS METHODS */
     void startGame()
     {
-        current_score = 0;
+        board.current_score = 0;
         game_status = Status.ONGOING;
 
         //Initializing curr_piece and next_piece
@@ -228,7 +227,7 @@ class Game
 
         //set highscore
         setHighscore();
-        current_score = 0;
+        board.current_score = 0;
 
         //changing text on buttons
         side_pane.start_stop.setText("Start Game");
@@ -263,7 +262,9 @@ class Game
         side_pane.pause_resume.setText("Pause");
     }
 
-    /* SETTING HIGHSCORE */
+    /* UPDATING SCORES */
+
+    //setting the highscore
     void setHighscore()
     {
         try 
@@ -273,12 +274,12 @@ class Game
             while(sc.hasNextInt())
                 highscore = sc.nextInt();
             
-            if(current_score <= highscore)
+            if(board.current_score <= highscore)
                 return;
 
             sc.close();
 
-            highscore = current_score;
+            highscore = board.current_score;
             try 
             {
                 FileWriter fw = new FileWriter("highscore.txt");
@@ -289,6 +290,8 @@ class Game
             {
                 System.out.println("IOException\n");
             }
+
+            side_pane.highscore.setText("<html>Highscore: <br> "+Integer.toString(highscore)+"</html>");
             
         } 
         catch (FileNotFoundException e) 
@@ -296,6 +299,14 @@ class Game
             System.out.println("\"highscore.txt\" not found!\n");
         }
     }
+
+    //updating the current_score
+    void updateCurrentScore()
+    {
+        side_pane.currentScore.setText("<html>Current Score: <br>+ "+Integer.toString(board.current_score)+"</html>");
+    }
+
+    
 
 
 }

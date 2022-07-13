@@ -3,14 +3,17 @@ package tetris;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 class SidePane extends JPanel
 {
     private Color pane_colour = Color.DARK_GRAY;
     
     
-    private JLabel highscore;
-    private JLabel currentScore;
+    JLabel highscore;
+    JLabel currentScore;
 
     NextPieceDisplay display;
     JButton start_stop, pause_resume;
@@ -35,7 +38,7 @@ class SidePane extends JPanel
         gbc.insets = new Insets(10, 20, 0, 20);
         gbc.gridx = 0;
         gbc.gridy = 1;
-        currentScore = new JLabel("<html>Current Score: <br> 1000000</html>");
+        currentScore = new JLabel("<html>Current Score: <br> 0</html>");
         currentScore.setForeground(Color.BLACK);
         currentScore.setPreferredSize(new Dimension(100, 50));
         add(currentScore, gbc);
@@ -43,7 +46,25 @@ class SidePane extends JPanel
         gbc.insets = new Insets(0, 20, 0, 20);
         gbc.gridx = 0;
         gbc.gridy = 2;
-        highscore = new JLabel("<html>Highscore: <br> 1000000</html>");
+        highscore = new JLabel();
+        //displaying current highscore
+        try 
+        {
+            Scanner sc = new Scanner(new File("highscore.txt"));
+            int score = 0;
+            while(sc.hasNextInt())
+            {
+                score = sc.nextInt();
+            }
+
+            sc.close();
+            highscore.setText("<html>Highscore: <br>"+Integer.toString(score)+"</html>");
+        } 
+        catch (FileNotFoundException e) 
+        {  
+            System.out.println("\"highscore.txt\" not found!\n");
+        }
+        
         highscore.setForeground(Color.BLACK);
         highscore.setPreferredSize(new Dimension(100, 50));
         add(highscore, gbc);

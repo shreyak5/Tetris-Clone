@@ -101,9 +101,11 @@ class Controls extends KeyAdapter
 
     void hardDrop()
     {
-
-        board.curr_piece.curr_pos[0] = 4;
-        int prev = 4;
+        //wont hard drop if the piece isn't fully displayed on the grid
+        if(!board.checkPosition())
+            return;
+        
+        int prev = board.curr_piece.curr_pos[0];
         while(board.checkPosition())
         {
             prev = board.curr_piece.curr_pos[0];

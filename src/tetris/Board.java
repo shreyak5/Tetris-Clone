@@ -153,7 +153,7 @@ class Board extends JPanel
         {
             int row = curr_piece.curr_pos[0] + orientation[i][0];
             int column = curr_piece.curr_pos[1] + orientation[i][1];
-            if(row < 0)
+            if(row < 0 || game_board[row][column] != board_colour)
                 continue;
             game_board[row][column] = curr_piece.piece_colour;
             rows_count[row]++;

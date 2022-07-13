@@ -177,6 +177,7 @@ class Game
     void startGame()
     {
         board.current_score = 0;
+        board.update_current_score = true;
         game_status = Status.ONGOING;
 
         //Initializing curr_piece and next_piece
@@ -231,6 +232,7 @@ class Game
         //set highscore
         setHighscore();
         board.current_score = 0;
+        updateCurrentScore();
 
         //changing text on buttons
         side_pane.start_stop.setText("Start Game");

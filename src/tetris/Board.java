@@ -21,6 +21,8 @@ class Board extends JPanel
 
     int current_score;
     boolean update_current_score;
+
+    String plus_points_message;
     static Random rand = new Random();
 
     Board(int square_size, NextPieceDisplay n)
@@ -29,6 +31,7 @@ class Board extends JPanel
         setBackground(board_colour);
 
         next_display = n;
+        plus_points_message = "Good Luck!";
 
         //initializing game_board
         game_board = new Color[20][10];
@@ -215,6 +218,7 @@ class Board extends JPanel
         {
             current_score += count*100;
             update_current_score = true;
+            plus_points_message = "+" + Integer.toString(count*100) + " points!";
             deleteFullRows(full_rows, count);
         }
     }

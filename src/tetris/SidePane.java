@@ -14,12 +14,16 @@ class SidePane extends JPanel
     
     JLabel highscore;
     JLabel currentScore;
+    JLabel plus_points;
 
     NextPieceDisplay display;
     JButton start_stop, pause_resume;
+
+    boolean toggle_plus_points;
     
     SidePane()
     {
+        toggle_plus_points = false;
         setBackground(pane_colour);
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -31,21 +35,29 @@ class SidePane extends JPanel
         display.setPreferredSize(new Dimension(100, 100));
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.insets = new Insets(20, 20, 200 , 20);
+        gbc.insets = new Insets(20, 20, 50, 20);
         add(display, gbc);
 
-        //current score and highscore
-        gbc.insets = new Insets(10, 20, 0, 20);
+        plus_points = new JLabel("points", SwingConstants.CENTER);
+        plus_points.setForeground(Color.DARK_GRAY);
+        plus_points.setFont(new Font("Serif", Font.BOLD, 15));
         gbc.gridx = 0;
         gbc.gridy = 1;
+        gbc.insets = new Insets(0, 20, 100, 20);
+        add(plus_points, gbc);
+
+        //current score and highscore
+        
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.insets = new Insets(0, 20, 0, 20);
         currentScore = new JLabel("<html>Current Score: <br> 0</html>");
         currentScore.setForeground(Color.BLACK);
         currentScore.setPreferredSize(new Dimension(100, 50));
         add(currentScore, gbc);
 
-        gbc.insets = new Insets(0, 20, 0, 20);
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 3;
         highscore = new JLabel();
         //displaying current highscore
         try 
@@ -72,13 +84,13 @@ class SidePane extends JPanel
         //adding buttons
         start_stop = new JButton("Start Game");
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         gbc.insets = new Insets(20, 20, 10, 20);
         add(start_stop, gbc);
 
         pause_resume = new JButton("Pause");
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         add(pause_resume, gbc);
 
     }

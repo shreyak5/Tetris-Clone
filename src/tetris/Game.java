@@ -1,5 +1,6 @@
 package tetris;
 
+import java.awt.Color;
 import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -45,6 +46,9 @@ class Game
 
                 if(board.update_current_score)
                     updateCurrentScore();
+                
+                if(side_pane.toggle_plus_points)
+                    togglePlusPoints();
             }
         });
 
@@ -237,6 +241,9 @@ class Game
         //changing text on buttons
         side_pane.start_stop.setText("Start Game");
         side_pane.pause_resume.setText("Pause");
+
+        //changing plus_points message
+        board.plus_points_message = "Good Luck!";
     }
 
     void pauseGame()
@@ -267,7 +274,7 @@ class Game
         side_pane.pause_resume.setText("Pause");
     }
 
-    /* UPDATING SCORES */
+    /* SIDEPANE DISPLAY METHODS */
 
     //setting the highscore
     void setHighscore()
@@ -310,6 +317,23 @@ class Game
     {
         side_pane.currentScore.setText("<html>Current Score: <br> "+Integer.toString(board.current_score)+"</html>");
         board.update_current_score = false;
+        side_pane.toggle_plus_points = true;
+    }
+
+    // showing the plus points
+    void togglePlusPoints()
+    {
+        JLabel points_display = side_pane.plus_points;
+        if(points_display.getForeground() == Color.DARK_GRAY)
+        {
+            points_display.setText(board.plus_points_message);
+            points_display.setForeground(Color.WHITE);
+        }
+        else
+        {
+            points_display.setForeground(Color.DARK_GRAY);
+            side_pane.toggle_plus_points = false;
+        }
     }
 
     

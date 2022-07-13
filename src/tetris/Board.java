@@ -20,6 +20,7 @@ class Board extends JPanel
     NextPieceDisplay next_display;
 
     int current_score;
+    boolean update_current_score;
     static Random rand = new Random();
 
     Board(int square_size, NextPieceDisplay n)
@@ -41,6 +42,9 @@ class Board extends JPanel
         rows_count = new int[20];
         for(int i = 0; i < 20; i++)
             rows_count[i] = 0;
+
+        current_score = 0;
+        update_current_score = true;
 
     }
 
@@ -156,8 +160,12 @@ class Board extends JPanel
         next_display.piece = next_piece;
         next_display.repaint();
 
+        //check full rows
+        checkFullRows();
+
         //repainting the board
         repaint();
+        
     }
 
     // returns true if the next position if a valid position, else false
@@ -186,6 +194,38 @@ class Board extends JPanel
         }
         return true;
     }
+
+    //checks the full rows in the board
+    void checkFullRows()
+    {
+        int full_rows[] = new int[]{-1, -1, -1, -1};
+        int count = 0;
+
+        for(int i = 0; i < 20; i++)
+        {
+            if(rows_count[i] == 10)
+            {
+                full_rows[count] = i;
+                count++;
+            }
+        }
+        
+        //if there are full rows, it clears them and updates the score based on the number of rows cleared
+        if(count > 0)
+        {
+            current_score += count*100;
+            update_current_score = true;
+            deleteFullRows(full_rows, count);
+        }
+    }
+
+    //deleted the full rows
+    void deleteFullRows(int full_rows[], int count)
+    {
+
+    }
+
+
 
     
 }

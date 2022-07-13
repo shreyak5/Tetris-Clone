@@ -42,6 +42,9 @@ class Game
                     board.changePiece();
                 }
                 board.repaint();
+
+                if(board.update_current_score)
+                    updateCurrentScore();
             }
         });
 
@@ -303,7 +306,8 @@ class Game
     //updating the current_score
     void updateCurrentScore()
     {
-        side_pane.currentScore.setText("<html>Current Score: <br>+ "+Integer.toString(board.current_score)+"</html>");
+        side_pane.currentScore.setText("<html>Current Score: <br> "+Integer.toString(board.current_score)+"</html>");
+        board.update_current_score = false;
     }
 
     

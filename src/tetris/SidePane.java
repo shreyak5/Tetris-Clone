@@ -84,4 +84,3 @@ class SidePane extends JPanel
     }
 }
 
-//add update highscore and update current score methods

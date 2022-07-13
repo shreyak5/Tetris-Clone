@@ -222,7 +222,29 @@ class Board extends JPanel
     //deleted the full rows
     void deleteFullRows(int full_rows[], int count)
     {
+        //clears all full rows
+        for(int i = 0; i < count; i++)
+        {
+            int row = full_rows[i];
+            for(int j = 0; j < 10; j++)
+                game_board[row][j] = board_colour;
+            rows_count[row] = 0;
+        } 
 
+        //shifting the upper rows down
+        for(int i = full_rows[0] - 1; i >= 0; i--)
+        {
+            if(rows_count[i] == 0)
+                break;
+            int new_row = i + count;
+            rows_count[new_row] = rows_count[i];
+            rows_count[i] = 0;
+            for(int j = 0; j < 10; j++)
+            {
+                game_board[new_row][j] = game_board[i][j];
+                game_board[i][j] = board_colour;
+            }
+        }
     }
 
 

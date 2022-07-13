@@ -11,13 +11,13 @@ class Tetromino
     static Hashtable<Shape, Color> Colours = new Hashtable<Shape, Color>();
     static
     {
-        Colours.put(Shape.O_shape, Color.RED);
-        Colours.put(Shape.I_shape, Color.BLUE);
-        Colours.put(Shape.J_shape, Color.GREEN);
-        Colours.put(Shape.L_shape, Color.YELLOW);
-        Colours.put(Shape.S_shape, Color.PINK);
-        Colours.put(Shape.Z_shape, Color.ORANGE);
-        Colours.put(Shape.T_shape, Color.MAGENTA);
+        Colours.put(Shape.O_shape, Color.decode("#845EC2"));
+        Colours.put(Shape.I_shape, Color.decode("#0081CF"));
+        Colours.put(Shape.J_shape, Color.decode("#D65DB1"));
+        Colours.put(Shape.L_shape, Color.decode("#FF6F91"));
+        Colours.put(Shape.S_shape, Color.decode("#00C9A7"));
+        Colours.put(Shape.Z_shape, Color.decode("#FF9671"));
+        Colours.put(Shape.T_shape, Color.decode("#F9F871"));
     }
     Random rand = new Random();
 

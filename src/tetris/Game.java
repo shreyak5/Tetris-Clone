@@ -1,13 +1,13 @@
 package tetris;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import javax.swing.Timer;
 import javax.swing.*;
 import java.util.Random;
 import java.util.Scanner;
@@ -35,6 +35,14 @@ class Game
         //initializing timer
         timer = new Timer(1000, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
+
+                //checking if the game ended 
+                if(game_status == Status.NONE)
+                {
+                    endGame();
+                    return;
+                }
+
                 board.requestFocus();
                 board.curr_piece.curr_pos[0]++;
                 if(!board.checkPosition())
@@ -212,12 +220,26 @@ class Game
 
     void endGame()
     {
-        int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to end this game?", "End Game Confirmation:", JOptionPane.YES_NO_CANCEL_OPTION);
+        // case 1: game ended because the grid is filled
+        if(game_status == Status.NONE)
+        {
+            //displaying game over dialog box
+            String message = "Game Over!\nYour score is " + board.current_score;
+            ImageIcon icon = new ImageIcon( new ImageIcon("images/jframe-icon.png").getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH));
+            JOptionPane.showMessageDialog(null, message, "Game Over", JOptionPane.PLAIN_MESSAGE, icon);
+            
+        }
+        // case 2: game ended intentionally by user
+        else
+        {
+            int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to end this game?", "End Game Confirmation:", JOptionPane.YES_NO_CANCEL_OPTION);
     
-        //doesn't end the game
-        if(result != JOptionPane.YES_OPTION)
-            return;
+            //doesn't end the game
+            if(result != JOptionPane.YES_OPTION)
+                return;
+        }
 
+        //stopping the timer
         timer.stop();
 
         //clearing board

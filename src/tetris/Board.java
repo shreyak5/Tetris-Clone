@@ -139,6 +139,8 @@ class Board extends JPanel
         {
             for(int column = 0; column < 10; column++)
                 game_board[row][column] = board_colour;
+            
+            rows_count[row] = 0;
         }
     }
 
@@ -151,8 +153,16 @@ class Board extends JPanel
         {
             int row = curr_piece.curr_pos[0] + orientation[i][0];
             int column = curr_piece.curr_pos[1] + orientation[i][1];
+            if(row < 0)
+                continue;
             game_board[row][column] = curr_piece.piece_colour;
             rows_count[row]++;
+        }
+
+        if(rows_count[0] != 0)
+        {
+            Game.game_status = Game.Status.NONE;
+            return;
         }
 
         //changing next_piece to curr_piece

@@ -324,14 +324,14 @@ class Game
     void togglePlusPoints()
     {
         JLabel points_display = side_pane.plus_points;
-        if(points_display.getForeground() == Color.DARK_GRAY)
+        if(points_display.getForeground() == side_pane.pane_colour)
         {
             points_display.setText(board.plus_points_message);
             points_display.setForeground(Color.WHITE);
         }
         else
         {
-            points_display.setForeground(Color.DARK_GRAY);
+            points_display.setForeground(side_pane.pane_colour);
             side_pane.toggle_plus_points = false;
         }
     }

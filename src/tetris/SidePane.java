@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 class SidePane extends JPanel
 {
-    private Color pane_colour = Color.DARK_GRAY;
+    Color pane_colour = Color.decode("#474747");
     
     
     JLabel highscore;
@@ -39,7 +39,7 @@ class SidePane extends JPanel
         add(display, gbc);
 
         plus_points = new JLabel("points", SwingConstants.CENTER);
-        plus_points.setForeground(Color.DARK_GRAY);
+        plus_points.setForeground(pane_colour);
         plus_points.setFont(new Font("Serif", Font.BOLD, 15));
         gbc.gridx = 0;
         gbc.gridy = 1;

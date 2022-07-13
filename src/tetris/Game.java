@@ -220,14 +220,11 @@ class Game
 
     void endGame()
     {
+        pauseGame();
         // case 1: game ended because the grid is filled
         if(game_status == Status.NONE)
         {
-            //displaying game over dialog box
-            String message = "Game Over!\nYour score is " + board.current_score;
-            ImageIcon icon = new ImageIcon( new ImageIcon("images/jframe-icon.png").getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH));
-            JOptionPane.showMessageDialog(null, message, "Game Over", JOptionPane.PLAIN_MESSAGE, icon);
-            
+            ; 
         }
         // case 2: game ended intentionally by user
         else
@@ -236,8 +233,16 @@ class Game
     
             //doesn't end the game
             if(result != JOptionPane.YES_OPTION)
+            {
+                resumeGame();
                 return;
+            }
         }
+
+        //displaying game over dialog box
+        String message = "Game Over!\nYour score is " + board.current_score;
+        ImageIcon icon = new ImageIcon( new ImageIcon("images/jframe-icon.png").getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH));
+        JOptionPane.showMessageDialog(null, message, "Game Over", JOptionPane.PLAIN_MESSAGE, icon);
 
         //stopping the timer
         timer.stop();

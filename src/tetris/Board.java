@@ -111,6 +111,9 @@ class Board extends JPanel
             if((row + y) < 0)
                 continue;
             
+            if(game_board[row + y][column + x] != board_colour)
+                continue;
+            
             //print block
             g.setColor(curr_piece.piece_colour);
             fillBlock(row + y, column + x, g);

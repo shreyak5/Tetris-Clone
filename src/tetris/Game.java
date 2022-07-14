@@ -267,15 +267,16 @@ class Game
 
     void endGame()
     {
-        pauseGame();
+        
         // case 1: game ended because the grid is filled
         if(game_status == Status.NONE)
         {
-            ; 
+            pauseGame(); 
         }
         // case 2: game ended intentionally by user
-        else
+        else if(game_status != Status.NONE)
         {
+            pauseGame();
             int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to end this game?", "End Game Confirmation:", JOptionPane.YES_NO_CANCEL_OPTION);
     
             //doesn't end the game

@@ -3,9 +3,9 @@
 <big>--- HOW TO PLAY ---</big><br>
 The aim in Tetris is simple; <br>
 You have to fill the lines at the bottom of the screen <br>
-and stop the grid from filling up<br>
+and stop the grid from filling up.<br>
 The blocks fall from the top of the screen.<br>
-You can move the blocks around and rotate them.<br><br>
+You can move them around and rotate them.<br><br>
 
 <big>--- CONTROLS ---</big><br>
 Move Right - Right Arrow <br>

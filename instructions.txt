@@ -1,0 +1,24 @@
+<html>
+<center>
+<big>--- HOW TO PLAY ---</big><br>
+The aim in Tetris is simple; <br>
+You have to fill the lines at the bottom of the screen <br>
+and stop the grid from filling up<br>
+The blocks fall from the top of the screen.<br>
+You can move the blocks around and rotate them.<br><br>
+
+<big>--- CONTROLS ---</big><br>
+Move Right - Right Arrow <br>
+Move Left - Left Arrow <br>
+Rotate Right - D or Up Arrow <br>
+Rotate Left - A <br>
+Hard Drop - Spacebar <br>
+Soft Drop - Down Arrow <br><br>
+
+<big>--- POINTS ---</big> <br>
+Clear one line : +100 <br>
+Clear two lines: +200 <br>
+Clear three lines: +300 <br>
+Clear four lines: +400 <br>
+</center>
+</html>

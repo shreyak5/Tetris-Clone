@@ -168,6 +168,53 @@ class Game
             }
         });
 
+        //instructions menu item
+        menu_bar.instructions.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) 
+            {
+                //pausing game while showing instructions
+                boolean resume_after_closed = false;
+                if(game_status == Status.ONGOING)
+                {
+                    resume_after_closed = true;
+                    pauseGame();
+                }
+ 
+                try 
+                {
+                    Scanner sc = new Scanner(new File("instructions.txt"));
+                    String message = "";
+
+                    while(sc.hasNextLine())
+                    {
+                        message += sc.nextLine();
+                    }
+
+                    sc.close();
+
+                    //displaying instructions popup
+                    ImageIcon img = new ImageIcon (new ImageIcon("images/instructions.png").getImage().getScaledInstance(300, 80, Image.SCALE_SMOOTH));
+                    JLabel final_display = new JLabel();
+                    final_display.setText(message);
+                    final_display.setIcon(img);
+                    final_display.setHorizontalTextPosition(SwingConstants.CENTER);
+                    final_display.setVerticalTextPosition(SwingConstants.BOTTOM);
+                    
+                    JOptionPane.showMessageDialog(null, final_display, "Help", JOptionPane.PLAIN_MESSAGE, null);
+                } 
+                catch (FileNotFoundException e1) 
+                {
+                    System.out.println("File \"instructions.txt\" not found!");
+                }
+
+                if(resume_after_closed)
+                {
+                    resumeGame();
+                }
+   
+            }
+        });
+
     }
 
     /* KEYBOARD CONTROL METHODS */

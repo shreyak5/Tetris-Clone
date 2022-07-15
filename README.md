@@ -10,7 +10,7 @@ This project is clone of the classic arcade game **Tetris**, written using Java.
 |----------|----------|
 |Move Right|`Right Arrow`|
 |Move Left|`Left Arrow`|
-|Rotate Right|`D button`|
+|Rotate Right|`Up Arrow` or `D button`|
 |Rotate Left|`A button`|
 |Hard Drop|`Spacebar`|
 |Soft Drop|`Down Arrow`|
@@ -22,13 +22,12 @@ This project is clone of the classic arcade game **Tetris**, written using Java.
 * You can view the instructions and controls of the game whenever required
 
 
-
-
+## GamePlay
 <!-- game video -->
 https://user-images.githubusercontent.com/84128385/179162196-cd6046e9-a76b-44d6-9ea4-aa32339fa46a.mp4
 
 
-
+## Screenshots
 <!-- game pictures -->
 <img width="313" alt="instructions_popup" src="https://user-images.githubusercontent.com/84128385/179161910-2c58164d-ecae-4cf6-9783-68cb8ef79211.png">
 <img width="311" alt="endgame_confirmation" src="https://user-images.githubusercontent.com/84128385/179161963-40ee2513-d0d7-40a5-a6a3-5cdfc99710af.png">

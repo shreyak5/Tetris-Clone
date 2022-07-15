@@ -23,3 +23,11 @@ This project is clone of the classic arcade game **Tetris**, written using Java.
 
 
 
+
+<!-- game video -->
+https://user-images.githubusercontent.com/84128385/179160609-90cea930-4e01-4279-b0e9-5d79cc626082.mp4
+
+<!-- game pictures -->
+<img width="313" alt="instructions_popup" src="https://user-images.githubusercontent.com/84128385/179161910-2c58164d-ecae-4cf6-9783-68cb8ef79211.png">
+<img width="311" alt="endgame_confirmation" src="https://user-images.githubusercontent.com/84128385/179161963-40ee2513-d0d7-40a5-a6a3-5cdfc99710af.png">
+<img width="312" alt="game_over" src="https://user-images.githubusercontent.com/84128385/179162017-53223f8a-a9d8-41fa-8152-ba66002a0ba0.png">

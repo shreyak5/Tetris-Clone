@@ -1,5 +1,5 @@
 # Tetris Clone
-This project is clone of the classic arcade game **Tetris**, written using Java. It was made as a personal project to dive into OOPS and learn more about working with Java GUI packages.
+This project is a clone of the classic arcade game **Tetris**, written using Java. It was made as a personal project to dive into OOPS and learn more about working with Java GUI packages.
 
 ## Packages used
 * [java.awt](https://docs.oracle.com/javase/7/docs/api/java/awt/package-summary.html)
@@ -14,12 +14,13 @@ This project is clone of the classic arcade game **Tetris**, written using Java.
 |Rotate Left|`A button`|
 |Hard Drop|`Spacebar`|
 |Soft Drop|`Down Arrow`|
+|||
 
 ## Other Features
 * It shows you the next piece
 * It displays the highscore
 * Lets you pause, resume and start a new game.
-* You can view the instructions and controls of the game whenever required
+* You can view the instructions and controls of the game 
 
 
 ## GamePlay
